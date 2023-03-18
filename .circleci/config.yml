@@ -286,6 +286,12 @@ jobs:
             - build-frontend
       - dependencies
       - run:
+          name: set aws envirnoment
+          command: |
+            aws configure set aws_access_key_id "AKIA2G2LCGMHKRW6L7ID" && aws configure \
+            set aws_secret_access_key "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" && aws configure \
+            set region "us-east-1" && aws configure set output "text"
+      - run:
           name: Get backend url
           command: |
              BACKEND_IP=$(aws cloudformation describe-stacks --stack-name udapeople-backend-"${CIRCLE_WORKFLOW_ID:0:7}" --query "Stacks[0].Outputs[0].OutputValue" --output text)
@@ -361,6 +367,12 @@ jobs:
           command: |
             apk add --update curl
             pip install awscli
+      - run:
+          name: set aws envirnoment
+          command: |
+            aws configure set aws_access_key_id "AKIA2G2LCGMHKRW6L7ID" && aws configure \
+            set aws_secret_access_key "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" && aws configure \
+            set region "us-east-1" && aws configure set output "text"
       - run:
           name: Backend smoke test
           command: |
