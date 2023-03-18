@@ -162,6 +162,12 @@ jobs:
       - dependencies
       # Checkout code from git
       - run:
+          name: set aws envirnoment
+          command: |
+            aws configure set aws_access_key_id "AKIA2G2LCGMHKRW6L7ID" && aws configure \
+            set aws_secret_access_key "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" && aws configure \
+            set region "us-east-1" && aws configure set output "text"
+      - run:
           name: Ensure back-end infrastructure exists
           command: |
             aws cloudformation deploy \
